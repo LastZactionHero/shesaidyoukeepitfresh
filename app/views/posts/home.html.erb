@@ -1,0 +1,213 @@
+<title>she said you keep it fresh</title>
+
+<style type="text/css">
+.box_main {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10px;
+	font-style: normal;
+	background-color: #FFF;
+	height: 600px;
+	width: 700px;
+	top: 50px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+.box_body {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10px;
+	background-color: #FFF;
+	height: 100%;
+	width: 100%;
+	overflow: scroll;
+}
+.box_titlebar {
+	height: 125px;
+	width: auto;
+}
+body {
+	background-color: #CCC;
+}
+.box_main .box_body table tr td div {
+	font-family: Georgia, Times New Roman, Times, serif;
+}
+.font_post {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 36px;
+}
+.font_header {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+}
+a:link {
+	color: #000;
+	text-decoration: none;
+}
+a:visited {
+	color: #000;
+	text-decoration: none;
+}
+a:hover {
+	color: #333;
+	text-decoration: underline;
+}
+.box_post_link {
+}
+.box_post_link {
+}
+.box_post {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px
+	background-color: #FFF;
+	width: 692px;
+	height: 0px;
+	position: relative;
+	visibility: hidden;	
+	border:4px dashed black;
+}
+.post_form_headers {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	vertical-align: top;
+}
+a:active {
+	color: #000;
+	text-decoration: none;
+}
+</style>
+
+<script type="text/javascript">
+  
+  postExpanded = false;
+
+  function expandPost() {
+    
+    if(postExpanded == true) {
+      document.getElementById("div_post").style.visibility = "hidden";
+      document.getElementById("div_post").style.height = "0px";  
+    } else {
+      document.getElementById("div_post").style.visibility = "visible";
+      document.getElementById("div_post").style.height = "250px";    
+    }
+    
+    postExpanded = !postExpanded;
+      
+  }
+
+  function addAlbum() {
+    
+    poster  = encodeURIComponent( document.getElementById("form_poster").value );
+    artist  = encodeURIComponent( document.getElementById("form_artist").value );
+    album   = encodeURIComponent( document.getElementById("form_album").value );
+    link    = encodeURIComponent( document.getElementById("form_link").value );
+    comment = encodeURIComponent( document.getElementById("form_comment").value );
+    
+    if(poster.empty()) {
+      alert( "Must add your name!" );
+    } else if(artist.empty()) {
+      alert( "Must add artist name!" );
+    } else if(album.empty()) {
+      alert( "Must add album name!" );
+    } else if(link.empty()) {
+      alert( "Must add a link!" );
+    } else {
+      url = "/add_artist?poster=" + poster + "&artist=" + artist + "&album=" + album + "&link=" + link + "&comment=" + comment
+      window.location = url;
+	}
+    
+  }
+  
+</script>
+
+<div class="box_main">
+  <div class="box_titlebar"><img src="images/topbar.jpg" width="700" height="125" /></div>
+  
+  <div class="box_post_link">
+    <div align="right"><span class="font_post"><a onclick="javascript:expandPost()">post</a></span></div>    
+  </div>
+  
+  <div id="div_post" class="box_post">
+    <form action="" method="get">
+      <table width="100%" border="0" cellspacing="3" cellpadding="0">
+        <tr>
+          <td width="24%" class="post_form_headers"><strong>Poster</strong></td>
+          <td width="76%"><input name="poster" id="form_poster" type="text" size="30" maxlength="50" class="post_form_headers"/></td>
+        </tr>
+        <tr>
+          <td class="post_form_headers"><strong>Artist</strong></td>
+          <td><input name="artist" id="form_artist" type="text" size="30" maxlength="50" class="post_form_headers"/></td>
+        </tr>
+        <tr>
+          <td class="post_form_headers"><strong>Album Name</strong></td>
+          <td><input name="album" id="form_album" type="text" size="30" maxlength="50" class="post_form_headers"/></td>
+        </tr>
+        <tr>
+          <td class="post_form_headers"><strong>Link</strong></td>
+          <td><input name="link" id="form_link" type="text" size="60" maxlength="255" class="post_form_headers"/></td>
+        </tr>
+        <tr>
+          <td class="post_form_headers"><strong>Comment</strong></td>
+          <td><textarea name="comment" id="form_comment" cols="60" rows="3" class="post_form_headers"></textarea></td>
+        </tr>
+        <tr>
+        <tr><td></td><td></td></tr>
+          <td class="post_form_headers">&nbsp;</td>
+          <td class="font_post"><a onclick="javascript:addAlbum()">Add This.</a></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+<div class="box_body">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>&nbsp;</tr>
+      
+	  <!-- POST START -->
+	  <% @posts.each do |post| %>
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="font_header"><strong>Artist:</strong></td>
+            <td class="font_header"><%= post.artist %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="font_header" width="200px"><strong>Album:</strong></td>
+            <td class="font_header"><%= post.album %></td>
+          </tr>
+          <tr>
+            <td class="font_header"><strong>Still Works?</strong></td>       
+            <td class="font_header">
+              <% if post.down == true %>
+                <span style="color:red">No</span>
+              <% else %>
+                <span style="color:green">Yes</span> <a href="/mark_down?id=<%= post.id %>">(Mark as Bad)</a>
+              <% end %>
+            </div>              
+            </td>            
+		  </tr>            
+		  <tr><td>&nbsp;</td><td></td></tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="font_header"><a href="<%= post.link %>"><%= post.link %></a></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr><td>&nbsp;</td></tr>
+      <tr>
+        <td class="font_header" ><strong><%= post.poster %>:</strong> <%= post.comment %></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>      
+	  <!-- POST END -->
+      <% end %>      
+
+    </table>
+  </div>
+</div>

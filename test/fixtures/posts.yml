@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  poster: MyString
+  artist: MyString
+  album: MyString
+  link: MyString
+  comment: MyString
+  down: false
+
+two:
+  poster: MyString
+  artist: MyString
+  album: MyString
+  link: MyString
+  comment: MyString
+  down: false
