@@ -81,8 +81,35 @@ class PostsController < ApplicationController
     end
   end
   
-  # HOME /
+  
+  # LOGIN /login
+  def login
+    session[:valid] = false
+  end
+  
+  # LOGIN ACTION /login_action
+  def login_action
+    login = params[:login]
+    pass = params[:pass]
+      
+    if(login == "ocho" && pass == "cinco")
+      redirect_to :action => "home"
+      session[:valid] = true     
+    else
+      redirect_to :action => "login"
+      session[:valid] = false
+    end
+  end
+  
+  
+  # HOME /home
   def home
+    puts "home!"
+    if(session[:valid] != true )
+      puts "invalid!"
+      redirect_to :action => "login"
+    end
+    
     @posts = Post.find( :all, :order => "id desc" )      
   end
   

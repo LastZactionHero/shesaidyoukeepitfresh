@@ -1,10 +1,13 @@
 Shesaidyoukeepitfresh::Application.routes.draw do  
   match '/add_artist' => 'posts#add_artist'
   match '/mark_down' => 'posts#mark_down'
+  match '/login_action' => 'posts#login_action'
+  match '/home' => 'posts#home'
   
   resources :posts
 
-  root :to => "posts#home"
+  root :to => "posts#login"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

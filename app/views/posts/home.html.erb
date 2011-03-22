@@ -26,7 +26,7 @@
 	width: auto;
 }
 body {
-	background-color: #CCC;
+	background-color: #000;
 }
 .box_main .box_body table tr td div {
 	font-family: Georgia, Times New Roman, Times, serif;
@@ -37,7 +37,7 @@ body {
 }
 .font_header {
 	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 16px;
+	font-size: 14px;
 }
 a:link {
 	color: #000;
@@ -87,7 +87,7 @@ a:active {
       document.getElementById("div_post").style.height = "0px";  
     } else {
       document.getElementById("div_post").style.visibility = "visible";
-      document.getElementById("div_post").style.height = "250px";    
+      document.getElementById("div_post").style.height = "225px";    
     }
     
     postExpanded = !postExpanded;
@@ -158,8 +158,8 @@ a:active {
     </form>
   </div>
 <div class="box_body">
+	<hr>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-      <tr>&nbsp;</tr>
       
 	  <!-- POST START -->
 	  <% @posts.each do |post| %>
@@ -175,12 +175,16 @@ a:active {
             <td class="font_header"><%= post.album %></td>
           </tr>
           <tr>
+            <td class="font_header" width="200px"><strong>Posted By:</strong></td>
+            <td class="font_header"><%= post.poster %></td>
+          </tr>
+          <tr>
             <td class="font_header"><strong>Still Works?</strong></td>       
             <td class="font_header">
               <% if post.down == true %>
                 <span style="color:red">No</span>
               <% else %>
-                <span style="color:green">Yes</span> <a href="/mark_down?id=<%= post.id %>">(Mark as Bad)</a>
+                <span style="color:green">Yes</span> <a href="/mark_down?id=<%= post.id %>">(Mark as Down)</a>
               <% end %>
             </div>              
             </td>            
@@ -197,10 +201,10 @@ a:active {
       </tr>
       <tr><td>&nbsp;</td></tr>
       <tr>
-        <td class="font_header" ><strong><%= post.poster %>:</strong> <%= post.comment %></td>
+        <td class="font_header" ><%= post.comment %></td>
       </tr>
       <tr>
-        <td>&nbsp;</td>
+        <td><hr></td>
       </tr>
       <tr>
         <td>&nbsp;</td>

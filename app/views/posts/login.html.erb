@@ -1,0 +1,111 @@
+<title>she said you keep it fresh</title>
+
+<style type="text/css">
+.box_main {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10px;
+	font-style: normal;
+	background-color: #FFF;
+	height: 300px;
+	width: 700px;
+	top: 50px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+.box_body {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10px;
+	background-color: #FFF;
+	margin-left: 50px;
+	margin-right: auto;		
+}
+.box_titlebar {
+	height: 125px;
+	width: auto;
+}
+body {
+	background-color: #000;
+}
+.box_main .box_body table tr td div {
+	font-family: Georgia, Times New Roman, Times, serif;
+}
+.font_post {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 36px;
+}
+.font_header {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+}
+a:link {
+	color: #000;
+	text-decoration: none;
+}
+a:visited {
+	color: #000;
+	text-decoration: none;
+}
+a:hover {
+	color: #333;
+	text-decoration: underline;
+}
+.box_post_link {
+}
+.box_post_link {
+}
+.box_post {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px
+	background-color: #FFF;
+	width: 692px;
+	height: 0px;
+	position: relative;
+	visibility: hidden;	
+	border:4px dashed black;
+}
+.post_form_headers {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	vertical-align: top;
+}
+a:active {
+	color: #000;
+	text-decoration: none;
+}
+</style>
+
+<script type="text/javascript">
+
+  function login() {
+    login = encodeURIComponent( document.getElementById("form_login").value );
+    pass = encodeURIComponent( document.getElementById("form_pass").value );
+    
+    url = "/login_action?login=" + login + "&pass=" + pass;
+    window.location = url;
+  }
+    
+</script>
+
+<div class="box_main">
+  <div class="box_titlebar"><img src="images/topbar.jpg" width="700" height="125" /></div>
+  
+  <br>
+  <div class="box_body">
+  	<table>
+  	  <tr>
+  	    <td>Login:</td>
+  	    <td><input name="poster" id="form_login" type="text" size="30" maxlength="50" class="post_form_headers"/></td>
+  	  </tr>  	  
+  	  <tr>
+  	    <td>Password:</td>
+  	    <td><input name="poster" id="form_pass" type="text" size="30" maxlength="50" class="post_form_headers"/></td>
+  	  </tr>
+  	  <tr>
+  	    <td></td>
+  	    <td><a onclick="javascript:login()">Log In</a></td>
+  	  </tr>  
+  	
+  	</table>
+  </div>
+</div>
