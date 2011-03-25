@@ -1,6 +1,7 @@
 Shesaidyoukeepitfresh::Application.routes.draw do  
   match '/add_artist' => 'posts#add_artist'
   match '/mark_down' => 'posts#mark_down'
+  match '/mark_up' => 'posts#mark_up'
   match '/login_action' => 'posts#login_action'
   match '/home' => 'posts#home'
   

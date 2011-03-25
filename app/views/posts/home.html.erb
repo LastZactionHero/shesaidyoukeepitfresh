@@ -16,7 +16,9 @@
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 10px;
 	background-color: #FFF;
-	width: 100%;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
 }
 .box_titlebar {
 	height: 125px;
@@ -48,10 +50,11 @@ a:hover {
 	color: #333;
 	text-decoration: underline;
 }
+
 .box_post_link {
+	text-align:right;
 }
-.box_post_link {
-}
+
 .box_post {
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 12px
@@ -125,7 +128,7 @@ a:active {
   
   <div id="div_post" class="box_post">
     <form action="" method="get">
-      <table width="100%" border="0" cellspacing="3" cellpadding="0">
+      <table width="90%" border="0" cellspacing="3" cellpadding="0">
         <tr>
           <td width="24%" class="post_form_headers"><strong>Poster</strong></td>
           <td width="76%"><input name="poster" id="form_poster" type="text" size="30" maxlength="50" class="post_form_headers"/></td>
@@ -163,49 +166,57 @@ a:active {
       <tr>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
+            <td class="font_header" width="150px"><strong>Date:</strong></td>
+            <td class="font_header"><%= post.created_at.strftime("%m/%d/%y") %></td>
+          </tr>             
+          <tr>
+            <td class="font_header" width="150px"><strong>Posted By:</strong></td>
+            <td class="font_header"><%= post.poster %></td>
+          </tr>                               
+          <tr>		  
+		  	<td>&nbsp;</td><td></td>
+		  </tr>	          
+          <tr>
             <td class="font_header"><strong>Artist:</strong></td>
             <td class="font_header"><%= post.artist %></td>
             <td></td>
           </tr>
           <tr>
-            <td class="font_header" width="200px"><strong>Album:</strong></td>
+            <td class="font_header"><strong>Album:</strong></td>
             <td class="font_header"><%= post.album %></td>
-          </tr>
-          <tr>
-            <td class="font_header" width="200px"><strong>Posted By:</strong></td>
-            <td class="font_header"><%= post.poster %></td>
           </tr>
           <tr>
             <td class="font_header"><strong>Still Works?</strong></td>       
             <td class="font_header">
               <% if post.down == true %>
-                <span style="color:red">No</span>
+                <span style="color:red">No</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mark_up?id=<%= post.id %>">(Mark as Working)</a>
               <% else %>
-                <span style="color:green">Yes</span> <a href="/mark_down?id=<%= post.id %>">(Mark as Down)</a>
+                <span style="color:green">Yes</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mark_down?id=<%= post.id %>">(Mark as Down)</a>
               <% end %>
             </div>              
             </td>            
-		  </tr>            
-		  <tr><td>&nbsp;</td><td></td></tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  </tr>	         
+          <tr>		  
+		  	<td>&nbsp;</td><td></td>
+		  </tr>			       
           <tr>
+            <td class="font_header"><strong>Link:</strong></td>
             <td class="font_header"><a href="<%= post.link %>"><%= post.link %></a></td>
           </tr>
+          <tr>		  
+		  	<td>&nbsp;</td><td></td>
+		  </tr>
         </table></td>
       </tr>
-      <tr><td>&nbsp;</td></tr>
       <tr>
         <td class="font_header" ><%= post.comment %></td>
       </tr>
       <tr>
-        <td><hr></td>
-      </tr>
-      <tr>
         <td>&nbsp;</td>
-      </tr>      
+      </tr>          
+      <tr>
+        <td><hr></td>
+      </tr>  
 	  <!-- POST END -->
       <% end %>      
 

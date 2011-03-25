@@ -84,7 +84,11 @@ class PostsController < ApplicationController
   
   # LOGIN /login
   def login
-    session[:valid] = false
+    if(session[:valid] && session[:valid] == true)
+      redirect_to :action => "home"
+    else    
+      session[:valid] = false
+      end
   end
   
   # LOGIN ACTION /login_action
@@ -146,4 +150,13 @@ class PostsController < ApplicationController
     redirect_to :action => "home"
   end
 
+  # Mark Album as Active
+  def mark_up
+    post = Post.find(params[:id])
+    post.down = false
+    post.save
+    
+    redirect_to :action => "home"
+  end
+    
 end
